@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js'></script>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
+
+        body {
+            background-color: #dcbe0c;
+        }
+
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 80px;
+            background-color: rosybrown;
+        }
+
+        #head {
+            position: absolute;
+            top: -23px;
+            left: 36vw;
+            font-size: 50px;
+            font-family: 'Hammersmith One', sans-serif;
+        }
+
+        #boxes {
+            position: absolute;
+            top: 220px;
+            left: 25vw;
+            display: flex;
+            flex-direction: column;
+            width: 721px;
+            height: 385px;
+            border: 2px solid red;
+            font-size: 55px;
+
+
+            background: rgba(248, 231, 28, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        #box1 {
+            position: relative;
+            margin-bottom: 117px;
+            top: 70px;
+            left: 34px;
+        }
+
+        #box2 {
+            position: relative;
+            top: 44px;
+            left: 34px;
+        }
+
+        #warningBox {
+            position: absolute;
+            top: 460px;
+            left: 59vw;
+            color: red;
+            font-size: 34px;
+            animation: ani 1s linear infinite;
+            opacity: 1;
+        }
+
+        @keyframes ani {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #sample {
+            position: absolute;
+            top: 234px;
+            left: 56px;
+            background-color: red;
+            width: 300px;
+            height: 300px;
+            border-radius: 22px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="head">System Dashboard</h1>
+    </header>
+    <div id="boxes">
+        <div id="box1">Safe Value: &nbsp; &nbsp; &nbsp; <span id="thershold">105</span></div>
+        <div id="box2">Current Value: &nbsp; &nbsp;<span id="warnValue">error!!</span></div>
+    </div>
+
+    <div id="warningBox">Warning!</div>
+
+    <!-- <div id="sample"></div> -->
+
+
+    <script>
+
+        var socket = io();
+
+        socket.on('data', function (data) {
+
+            if (data > 105) {
+                document.getElementById('warningBox').style.display = 'revert';
+            }
+            else {
+                document.getElementById('warningBox').style.display = 'none';
+            }
+            console.log(data);
+            document.getElementById('warnValue').innerHTML = data;
+            document.getElementById('sample').style.top = data + "px";
+
+        });
+
+    </script>
+</body>
+
+</html>
