@@ -111,24 +111,42 @@
 
     <!-- <div id="sample"></div> -->
 
-
+  
+     <!-- <script>
+         console.log('https://api.thingspeak.com/channels/1422086/feeds/last.json')
+     </script> -->
     <script>
 
-        var socket = io();
+     var api_url = 'https://api.thingspeak.com/channels/1422086/feeds/last.json'
+        
 
-        socket.on('data', function (data) {
+        async function getValue() {
+            var response = await fetch(api_url);
+            var data = await response.json();
+            var {field1} = data;
+            console.log(field1)
 
-            if (data > 105) {
-                document.getElementById('warningBox').style.display = 'revert';
-            }
-            else {
-                document.getElementById('warningBox').style.display = 'none';
-            }
-            console.log(data);
-            document.getElementById('warnValue').innerHTML = data;
-            document.getElementById('sample').style.top = data + "px";
+            document.getElementById('warnValue').innerHTML = field1;
+        }
 
-        });
+        getValue();
+        setInterval(getValue,10000);
+
+        // var socket = io();
+
+        // socket.on('data', function (data) {
+
+        //     if (data > 105) {
+        //         document.getElementById('warningBox').style.display = 'revert';
+        //     }
+        //     else {
+        //         document.getElementById('warningBox').style.display = 'none';
+        //     }
+        //     console.log(data);
+        //     document.getElementById('warnValue').innerHTML = data;
+        //     document.getElementById('sample').style.top = data + "px";
+
+        // });
 
     </script>
 </body>
