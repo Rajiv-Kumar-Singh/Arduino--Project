@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arduino Project</title>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js'></script>
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <!-- <link rel="stylesheet" media="screen and (max-device-width: 540px)" href="phone.css"> -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
 
@@ -22,20 +22,38 @@
             width: 100vw;
             height: 80px;
             background-color: rosybrown;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         #head {
-            position: absolute;
+            /* position: absolute;
+            display: block;
             top: -23px;
-            left: 36vw;
+            left: 36vw; */
             font-size: 50px;
             font-family: 'Hammersmith One', sans-serif;
         }
 
+        @media screen and (max-width: 540px) {
+            #head {
+                font-size: 20px !important;
+            }
+        }
+
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 750px;
+        }
+
         #boxes {
-            position: absolute;
+            /* position: absolute;
             top: 220px;
-            left: 25vw;
+            left: 25vw; */
             display: flex;
             flex-direction: column;
             width: 721px;
@@ -52,23 +70,31 @@
             border: 1px solid rgba(255, 255, 255, 0.18);
         }
 
+        @media screen and (max-width: 540px) {
+            #boxes {
+                font-size: 30px !important;
+            }
+        }
+
         #box1 {
             position: relative;
             margin-bottom: 117px;
             top: 70px;
             left: 34px;
+            display: inline-block;
         }
 
         #box2 {
             position: relative;
             top: 44px;
             left: 34px;
+            display: inline-block;
         }
 
         #warningBox {
-            position: absolute;
-            top: 460px;
-            left: 59vw;
+            position: relative;
+            top: 0px;
+            left: 2px;
             color: red;
             font-size: 34px;
             animation: ani 1s linear infinite;
@@ -102,35 +128,38 @@
     <header>
         <h1 id="head">System Dashboard</h1>
     </header>
-    <div id="boxes">
-        <div id="box1">Safe Value: &nbsp; &nbsp; &nbsp; <span id="thershold">105</span></div>
-        <div id="box2">Current Value: &nbsp; &nbsp;<span id="warnValue">error!!</span></div>
+    <div id="container">
+        <div id="boxes">
+            <div id="box1">Safe Value: &nbsp; &nbsp; &nbsp; <span id="thershold">105</span></div>
+            <div id="box2">Current Value: &nbsp; &nbsp;<span id="warnValue">error!!</span> <span
+                    id="warningBox">Warning!</span></div>
+        </div>
     </div>
 
-    <div id="warningBox">Warning!</div>
+    <!-- <div id="warningBox">Warning!</div> -->
 
     <!-- <div id="sample"></div> -->
 
-  
-     <!-- <script>
+
+    <!-- <script>
          console.log('https://api.thingspeak.com/channels/1422086/feeds/last.json')
      </script> -->
     <script>
 
-     var api_url = 'https://api.thingspeak.com/channels/1422086/feeds/last.json'
-        
+        var api_url = 'https://api.thingspeak.com/channels/1422086/feeds/last.json'
+
 
         async function getValue() {
             var response = await fetch(api_url);
             var data = await response.json();
-            var {field1} = data;
+            var { field1 } = data;
             console.log(field1)
 
             document.getElementById('warnValue').innerHTML = field1;
         }
 
         getValue();
-        setInterval(getValue,10000);
+        setInterval(getValue, 10000);
 
         // var socket = io();
 
