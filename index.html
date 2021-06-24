@@ -99,6 +99,7 @@
             font-size: 34px;
             animation: ani 1s linear infinite;
             opacity: 1;
+            display: none;
         }
 
         @keyframes ani {
@@ -131,7 +132,7 @@
     <div id="container">
         <div id="boxes">
             <div id="box1">Safe Value: &nbsp; &nbsp; &nbsp; <span id="thershold">105</span></div>
-            <div id="box2">Current Value: &nbsp; &nbsp;<span id="warnValue">error!!</span> <span
+            <div id="box2">Current Value: &nbsp; &nbsp;<span id="warnValue">error!!</span><span
                     id="warningBox">Warning!</span></div>
         </div>
     </div>
@@ -155,6 +156,12 @@
             var { field1 } = data;
             console.log(field1)
 
+            if (field1 > 105) {
+                document.getElementById('warningBox').style.display = 'revert';
+            }
+            else {
+                document.getElementById('warningBox').style.display = 'none';
+            }
             document.getElementById('warnValue').innerHTML = field1;
         }
 
