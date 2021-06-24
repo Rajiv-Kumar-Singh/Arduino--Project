@@ -165,9 +165,9 @@
         }
 
         #warningBox {
-            position: relative;
-            top: 54px;
-            left: 191px;
+            position: absolute;
+            top: 219px;
+            left: 328px;
             color: red;
             font-size: 34px;
             animation: ani 1s linear infinite;
@@ -182,6 +182,19 @@
 
             100% {
                 opacity: 1;
+            }
+        }
+
+        @media screen and (max-width: 540px) {
+            #warningBox {
+                 top: 209px;
+                 left:242px ;
+            }
+        }
+        @media screen and (max-width: 360px) {
+            #warningBox {
+                 top: 256px!important;
+                 left: 169px!important;;
             }
         }
 
@@ -254,7 +267,7 @@
                 document.getElementById('warningBox').style.display = 'revert';
             }
             else {
-                document.getElementById('warningBox').style.display = 'none';
+                document.getElementById('warningBox').style.display = 'revert';
             }
             document.getElementById('warnValue').innerHTML = field1;
             var { created_at } = data;
