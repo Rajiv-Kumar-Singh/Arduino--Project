@@ -10,9 +10,11 @@
     <!-- <link rel="stylesheet" media="screen and (max-device-width: 540px)" href="phone.css"> -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
         body {
             background-color: #dcbe0c;
+            overflow: hidden;
         }
 
         header {
@@ -43,11 +45,29 @@
             }
         }
 
+        #head2{
+            /* display: flex;
+            justify-content: center;
+            align-items: center; */
+            margin-top: 133px;
+            width: 100vw;
+            height: 88px;
+            /* border: 2px solid red; */
+        }
+        #head22{
+            position: relative;
+            top: 46px;
+            left: 26vw;
+            font-size: 30px;
+            font-family: 'Roboto Condensed', sans-serif;
+
+        }
+
         #container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 750px;
+            height: 384px;
         }
 
         #boxes {
@@ -59,7 +79,7 @@
             width: 721px;
             height: 385px;
             border: 2px solid red;
-            font-size: 55px;
+            font-size: 50px;
 
 
             background: rgba(248, 231, 28, 0.25);
@@ -68,6 +88,7 @@
             -webkit-backdrop-filter: blur(4px);
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.18);
+            font-family: 'Roboto Condensed', sans-serif;
         }
 
         @media screen and (max-width: 540px) {
@@ -129,6 +150,10 @@
     <header>
         <h1 id="head">System Dashboard</h1>
     </header>
+         <div id="head2">
+            <div id="head22">1. Monitoring Gas Sensor</div>
+
+            </div>
     <div id="container">
         <div id="boxes">
             <div id="box1">Safe Value: &nbsp; &nbsp; &nbsp; <span id="thershold">105</span></div>
