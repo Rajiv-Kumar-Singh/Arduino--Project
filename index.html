@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arduino Project</title>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js'></script>
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js'></script> -->
     <!-- <link rel="stylesheet" media="screen and (max-device-width: 540px)" href="phone.css"> -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
@@ -14,10 +14,14 @@
 
         body {
             background-color: #dcbe0c;
-            overflow: hidden;
+            /* overflow: hidden; */
         }
 
-        header {
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        #header {
             position: absolute;
             top: 0;
             left: 0;
@@ -28,7 +32,23 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            /* z-index: 5; */
+            /* background: url("ongc2.jpg");
+            background-repeat: no-repeat;
+            background-size: 300px 100px; */
+            /* background-image: url("ongc2.jpg");
+            background-size: cover;
+            background-attachment: fixed; */
+            /* height: 20vh; */
         }
+
+        /* #header img {
+            position: absolute;
+            top: 0px;
+            width: 100%;
+            height: 585px;
+            background-size: cover;
+        } */
 
         #head {
             /* position: absolute;
@@ -41,33 +61,58 @@
 
         @media screen and (max-width: 540px) {
             #head {
-                font-size: 20px !important;
+                font-size: 31px !important;
             }
         }
 
-        #head2{
+        #head2 {
             /* display: flex;
             justify-content: center;
             align-items: center; */
             margin-top: 133px;
-            width: 100vw;
+            width: 89vw;
             height: 88px;
+            display: inline-block;
             /* border: 2px solid red; */
         }
-        #head22{
+
+        #head22 {
             position: relative;
             top: 46px;
             left: 26vw;
-            font-size: 30px;
+            font-size: 31px;
+            display: inline-block;
             font-family: 'Roboto Condensed', sans-serif;
 
+        }
+
+        @media screen and (max-width: 640px) {
+            #head22 {
+                left: 1vw !important;
+            }
+        }
+
+        #mainContainer {
+            position: absolute;
+            top: 230px;
+            left: 0px;
+
+            width: 100vw;
+            height: 789px;
+            /* border: 2px solid green; */
         }
 
         #container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 384px;
+            height: 658px;
+            /* border: 2px solid red; */
+        }
+        @media screen and (max-width: 349px) {
+            #container {
+                height: 720px!important;
+            }
         }
 
         #boxes {
@@ -77,9 +122,9 @@
             display: flex;
             flex-direction: column;
             width: 721px;
-            height: 385px;
-            border: 2px solid red;
-            font-size: 50px;
+            height: 647px;
+            /* border: 2px solid red; */
+            font-size: 38px;
 
 
             background: rgba(248, 231, 28, 0.25);
@@ -93,12 +138,18 @@
 
         @media screen and (max-width: 540px) {
             #boxes {
-                font-size: 30px !important;
+                font-size: 26px !important;
             }
         }
 
+        #boxes iframe{
+            position: absolute;
+            top: 355px;
+            left: 12px;
+            width: 90vw;
+        }
         #box1 {
-            position: relative;
+            position: absolute;
             margin-bottom: 117px;
             top: 70px;
             left: 34px;
@@ -106,16 +157,16 @@
         }
 
         #box2 {
-            position: relative;
-            top: 44px;
+            position: absolute;
+            top: 216px;
             left: 34px;
             display: inline-block;
         }
 
         #warningBox {
             position: relative;
-            top: 0px;
-            left: 2px;
+            top: 54px;
+            left: 191px;
             color: red;
             font-size: 34px;
             animation: ani 1s linear infinite;
@@ -133,7 +184,14 @@
             }
         }
 
-        #sample {
+        #dt {
+            position: absolute;
+            top: 706px;
+            left: 26vw;
+            color: rgb(24, 4, 207);
+        }
+
+        /* #sample {
             position: absolute;
             top: 234px;
             left: 56px;
@@ -142,23 +200,28 @@
             height: 300px;
             border-radius: 22px;
 
-        }
+        } */
     </style>
 </head>
 
 <body>
-    <header>
+    <header id="header">
         <h1 id="head">System Dashboard</h1>
+        <!-- <img src="./static/files/ongc2.jpg" alt=""> -->
     </header>
-         <div id="head2">
-            <div id="head22">1. Monitoring Gas Sensor</div>
+    <div id="head2">
+        <div id="head22">1. Monitoring Gas Sensor</div>
 
+    </div>
+    <div id="mainContainer">
+        <div id="container">
+            <div id="boxes">
+                <div id="box1">Safe Value: &nbsp; &nbsp; &nbsp; <span id="thershold">105</span></div>
+                <div id="box2">Current Value: &nbsp; &nbsp;<span id="warnValue">error!!</span></div>
+                <div id="warningBox">Warning!</div>
+                <iframe width="450" height="260" style="border: 1px solid #188fc7;" src="https://thingspeak.com/channels/1422086/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
             </div>
-    <div id="container">
-        <div id="boxes">
-            <div id="box1">Safe Value: &nbsp; &nbsp; &nbsp; <span id="thershold">105</span></div>
-            <div id="box2">Current Value: &nbsp; &nbsp;<span id="warnValue">error!!</span><span
-                    id="warningBox">Warning!</span></div>
+            <div id="dt">Last update at = error!!</div>
         </div>
     </div>
 
@@ -172,14 +235,13 @@
      </script> -->
     <script>
 
-        var api_url = 'https://api.thingspeak.com/channels/1422086/feeds/last.json'
+        var api_url = 'https://api.thingspeak.com/channels/1422086/feeds/last.json?timezone=Asia/Kolkata'
 
 
         async function getValue() {
             var response = await fetch(api_url);
             var data = await response.json();
             var { field1 } = data;
-            console.log(field1)
 
             if (field1 > 105) {
                 document.getElementById('warningBox').style.display = 'revert';
@@ -188,10 +250,17 @@
                 document.getElementById('warningBox').style.display = 'none';
             }
             document.getElementById('warnValue').innerHTML = field1;
+            var { created_at } = data;
+            document.getElementById('dt').innerHTML = "Last Update at : " + created_at;
+            console.log(field1)
+            console.log(created_at)
         }
 
         getValue();
         setInterval(getValue, 10000);
+
+
+
 
         // var socket = io();
 
