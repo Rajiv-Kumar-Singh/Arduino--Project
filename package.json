@@ -17,6 +17,7 @@
   "author": "Rajiv",
   "license": "ISC",
   "dependencies": {
+    "canvas-gauges": "^2.1.7",
     "express": "^4.17.1",
     "serialport": "^9.0.1",
     "socket.io": "^2.4.1"
