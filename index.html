@@ -109,9 +109,10 @@
             height: 658px;
             /* border: 2px solid red; */
         }
+
         @media screen and (max-width: 349px) {
             #container {
-                height: 720px!important;
+                height: 720px !important;
             }
         }
 
@@ -142,7 +143,7 @@
             }
         }
 
-        #boxes iframe{
+        #boxes iframe {
             position: absolute;
             top: 355px;
             left: 5px;
@@ -167,7 +168,7 @@
         #warningBox {
             position: absolute;
             top: 219px;
-            left: 328px;
+            left: 396px;
             color: red;
             font-size: 34px;
             animation: ani 1s linear infinite;
@@ -187,14 +188,21 @@
 
         @media screen and (max-width: 540px) {
             #warningBox {
-                 top: 209px;
-                 left:242px ;
+                top: 209px;
+                left: 284px;
             }
         }
-        @media screen and (max-width: 360px) {
+
+        @media screen and (max-width: 406px) {
             #warningBox {
-                 top: 256px!important;
-                 left: 169px!important;;
+                top: 262px;
+                left: 192px;
+            }
+        }
+        @media screen and (max-width: 312px) {
+            #warningBox {
+                left:63vw ;
+                font-size: 28px;
             }
         }
 
@@ -206,18 +214,20 @@
             animation: ani2 1s linear infinite;
             font-weight: 900;
         }
-        @keyframes ani2{
-            0%{
+
+        @keyframes ani2 {
+            0% {
                 color: red;
             }
-            100%{
-                color:rgb(24, 4, 207);
+
+            100% {
+                color: rgb(24, 4, 207);
             }
         }
 
         @media screen and (max-width: 540px) {
             #dt {
-                 left:4vw ;
+                left: 4vw;
             }
         }
 
@@ -246,10 +256,12 @@
     <div id="mainContainer">
         <div id="container">
             <div id="boxes">
-                <div id="box1">Safe Value: &nbsp; &nbsp; &nbsp; <span id="thershold">105</span></div>
-                <div id="box2">Current Value: &nbsp; &nbsp;<span id="warnValue">error!!</span></div>
+                <div id="box1">Safe Value: &nbsp; &nbsp; &nbsp; <span id="thershold">105 &nbsp;ppm</span></div>
+                <div id="box2">Current Value: &nbsp; &nbsp;<span id="warnValue">error!!</span><span id="unit">&nbsp;ppm</span>
+                </div>
                 <div id="warningBox">Warning!</div>
-                <iframe width="450" height="260" style="border: 1px solid #188fc7;" src="https://thingspeak.com/channels/1422086/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=30&type=line&xaxis=Time"></iframe>
+                <iframe width="450" height="260" style="border: 1px solid #188fc7;"
+                    src="https://thingspeak.com/channels/1422086/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=30&type=line&xaxis=Time"></iframe>
                 <!-- <iframe width="450" height="260" style="border: 1px solid #188fc7;" src="https://thingspeak.com/channels/1422086/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&xaxis=Time"></iframe> -->
                 <!-- <iframe width="450" height="260" style="border: 1px solid #188fc7;" src="https://thingspeak.com/channels/1422086/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe> -->
             </div>
