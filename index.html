@@ -454,7 +454,8 @@
     </style>
 </head>
 
-<body>
+<body id="mainBody">
+    <!-- <audio id="warnMusic" src="./static/warn.mp3" autoplay loop></audio> -->
     <header id="header">
         <h1 id="head">System Dashboard</h1>
         <!-- <img src="./static/files/ongc2.jpg" alt=""> -->
@@ -515,6 +516,7 @@
 
 
         async function getValue() {
+            // var X =  document.getElementById('warnMusic');
             var response = await fetch(api_url);
             var data = await response.json();
             var { field1 } = data;
@@ -526,6 +528,8 @@
                 document.getElementById('warningMessage').style.color = 'red';
                 document.getElementById('warningMessage').innerHTML = 'Warning! Gas Leak Detected';
                 document.getElementById('warnValue').color = 'red';
+                document.getElementById('mainBody').style.backgroundColor = "red";
+                // X.play();
             }
             else {
                 document.getElementById('Dot').style.color = 'green';
@@ -533,6 +537,8 @@
                 document.getElementById('warningMessage').style.color = 'green';
                 document.getElementById('warningMessage').innerHTML = 'All Ok!';
                 document.getElementById('warnValue').color = 'green';
+                document.getElementById('mainBody').style.backgroundColor = "#dcbe0c";
+                // X.pause();
                 // document.getElementById("Dot").id = "Dot";
             }
             document.getElementById('warnValue').innerHTML = field1;
