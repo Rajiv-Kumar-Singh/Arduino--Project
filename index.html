@@ -451,6 +451,12 @@
             font-size: 24px;
             font-family: 'Jomhuria', cursive;
         }
+
+        #tempData{
+            position: absolute;
+            top: 234px;
+            left: 40px;
+        }
     </style>
 </head>
 
@@ -471,6 +477,7 @@
                 <div id="box2">Current Value: &nbsp; &nbsp;<span id="warnValue">error!!</span><span
                         id="unit">&nbsp;ppm</span>
                 </div>
+                <div id="tempData">Temperature : &nbsp;&nbsp;&nbsp;<span id="tempValue"></span>&nbsp; &#8451</div>
                 <div class="chart">
                     <div id="ppmLevel">PPM Level Indicator</div>
                     <canvas id="gauge"></canvas>
@@ -519,7 +526,7 @@
             // var X =  document.getElementById('warnMusic');
             var response = await fetch(api_url);
             var data = await response.json();
-            var { field1 } = data;
+            var { field1,field2 } = data;
 
             if (field1 > 105) {
                 document.getElementById('Dot').style.color = 'red';
@@ -545,6 +552,7 @@
             var { created_at } = data;
             // var degree = field1;
             document.getElementById('dt').innerHTML = "Last Update at : " + created_at;
+            document.getElementById('tempValue').innerHTML = field2;
             // document.getElementById('meter').style.transform = rotate(field1 + 'deg');
             console.log(field1)
             console.log(created_at)
