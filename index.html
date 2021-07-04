@@ -100,13 +100,21 @@
             }
         }
 
+        @media screen and (max-width: 398px) {
+            #head22 {
+                top: 57px;
+                /* left: 19vw; */
+                font-size: 22px;
+            }
+        }
+
         #mainContainer {
             position: absolute;
-            top: 230px;
+            top: 282px;
             left: 0px;
 
             width: 100vw;
-            height: 789px;
+            height: 1040px;
             /* border: 2px solid green; */
         }
 
@@ -124,6 +132,12 @@
             }
         }
 
+        @media screen and (max-width: 816px) {
+            #container {
+                height: 1190px !important;
+            }
+        }
+
         #boxes {
             /* position: absolute;
             top: 220px;
@@ -131,7 +145,7 @@
             display: flex;
             flex-direction: column;
             width: 936px;
-            height: 900px;
+            height: 996px;
             /* border: 2px solid red; */
             font-size: 38px;
 
@@ -151,9 +165,15 @@
             }
         }
 
+        @media screen and (max-width: 816px) {
+            #boxes {
+                height: 1283px;
+            }
+        }
+
         #boxes iframe {
             position: absolute;
-            top: 542px;
+            top: 649px;
             left: 5px;
             width: 96%;
         }
@@ -168,7 +188,7 @@
 
         #box2 {
             position: absolute;
-            top: 181px;
+            top: 152px;
             left: 34px;
             display: inline-block;
         }
@@ -217,8 +237,8 @@
 
         #dt {
             position: absolute;
-            top: 851px;
-            left: 27vw;
+            top: 894px;
+            left: 20vw;
             color: rgb(24, 4, 207);
             animation: ani2 1s linear infinite;
             font-weight: 900;
@@ -290,7 +310,7 @@
             width: 90%;
             height: 139px;
             position: absolute;
-            top: 292px;
+            top: 397px;
             left: 14px;
 
             background: rgba(248, 231, 28, 0.25);
@@ -338,7 +358,7 @@
 
         #mainBuzzerBox {
             position: absolute;
-            top: 447px;
+            top: 567px;
             left: 26px;
             width: 197px;
             height: 56px;
@@ -423,22 +443,27 @@
 
         @media screen and (max-width: 816px) {
             .chart {
-                top: 265px;
+                top: 426px;
                 left: 3.8%;
             }
-            #mainDisplayBox{
-                top: 455px;
+
+            #mainDisplayBox {
+                top: 618px;
             }
+
             #mainBuzzerBox {
-                top: 620px;
+                top: 793px;
             }
+
             #boxes iframe {
-                top: 707px;
+                top: 892px;
             }
-            #dt{
-                top: 1027px;
+
+            #dt {
+                top: 1154px;
             }
         }
+
         @media screen and (max-width: 326px) {
             .chart {
                 left: 0.8%;
@@ -452,10 +477,16 @@
             font-family: 'Jomhuria', cursive;
         }
 
-        #tempData{
+        #tempData {
             position: absolute;
-            top: 234px;
-            left: 40px;
+            top: 233px;
+            left: 34px;
+        }
+
+        #humiData {
+            position: absolute;
+            top: 313px;
+            left: 34px;
         }
     </style>
 </head>
@@ -483,6 +514,7 @@
                     <canvas id="gauge"></canvas>
 
                 </div>
+                <div id="humiData">Humidity : &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<span id="humiValue"></span>&nbsp; %</div>
                 <div id="mainDisplayBox">
                     <div id="display">Display</div>
                     <div id="displayBox">
@@ -526,7 +558,7 @@
             // var X =  document.getElementById('warnMusic');
             var response = await fetch(api_url);
             var data = await response.json();
-            var { field1,field2 } = data;
+            var { field1, field2, field3 } = data;
 
             if (field1 > 105) {
                 document.getElementById('Dot').style.color = 'red';
@@ -553,9 +585,10 @@
             // var degree = field1;
             document.getElementById('dt').innerHTML = "Last Update at : " + created_at;
             document.getElementById('tempValue').innerHTML = field2;
+            document.getElementById('humiValue').innerHTML = field3;
             // document.getElementById('meter').style.transform = rotate(field1 + 'deg');
-            console.log(field1)
-            console.log(created_at)
+            // console.log(field1)
+            // console.log(created_at)
             let opts = {
                 angle: 0, // The span of the gauge arc
                 lineWidth: 0.44, // The line thickness
